@@ -1,0 +1,11 @@
+venv/
+_pycache_/
+*.pyc
+.env
+data/
+ml/mlruns/
+*.pt
+*.pth
+.DS_Store
+
+
