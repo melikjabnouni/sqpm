@@ -4,9 +4,9 @@ _pycache_/
 .env
 data/
 ml/mlruns/
-*.pt
-*.pth
+!api/models/best.pt
 .DS_Store
 
 
 source venv/bin/activate	runs/
+*.swp
