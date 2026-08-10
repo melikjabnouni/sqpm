@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: #0f1117;
+  color: #e6e6e6;
+}
+
+.dashboard {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.dashboard h1 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.panel {
+  background-color: #1a1d27;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.panel h2 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0 0 16px 0;
+  color: #a0a4b0;
+}
