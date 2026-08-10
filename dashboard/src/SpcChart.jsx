@@ -18,6 +18,16 @@ function OutOfControlDot(props) {
   return <circle cx={cx} cy={cy} r={2.5} fill="#4c9aff" />;
 }
 
+function CapabilityBadge({ label, value }) {
+  if (value === null) return null;
+  const color = value >= 1.33 ? "#4caf50" : value >= 1.0 ? "#ffb300" : "#f44336";
+  return (
+    <span style={{ marginRight: 16 }}>
+      {label}: <strong style={{ color }}>{value}</strong>
+    </span>
+  );
+}
+
 export default function SpcChart() {
   const { data, error } = usePolling("/metrics/spc");
 
@@ -52,6 +62,15 @@ export default function SpcChart() {
           </span>
         )}
       </h2>
+
+      <div style={{ marginBottom: 16, fontSize: "0.9rem" }}>
+        <CapabilityBadge label="Cp" value={data.cp} />
+        <CapabilityBadge label="Cpk" value={data.cpk} />
+        <span style={{ color: "#a0a4b0" }}>
+          (spec: {data.lsl}–{data.usl})
+        </span>
+      </div>
+
       <ResponsiveContainer width="100%" height={280}>
         <LineChart data={data.points} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#2a2e3a" />
@@ -64,6 +83,8 @@ export default function SpcChart() {
           <ReferenceLine y={data.center_line} stroke="#a0a4b0" strokeDasharray="4 4" label={{ value: "CL", fill: "#a0a4b0", fontSize: 11 }} />
           <ReferenceLine y={data.ucl} stroke="#f44336" strokeDasharray="4 4" label={{ value: "UCL", fill: "#f44336", fontSize: 11 }} />
           <ReferenceLine y={data.lcl} stroke="#f44336" strokeDasharray="4 4" label={{ value: "LCL", fill: "#f44336", fontSize: 11 }} />
+          <ReferenceLine y={data.usl} stroke="#9c27b0" strokeDasharray="2 2" label={{ value: "USL", fill: "#9c27b0", fontSize: 11 }} />
+          <ReferenceLine y={data.lsl} stroke="#9c27b0" strokeDasharray="2 2" label={{ value: "LSL", fill: "#9c27b0", fontSize: 11 }} />
           <Line
             type="monotone"
             dataKey="measurement"
